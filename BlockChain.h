@@ -30,8 +30,8 @@ class BlockChain {
 
    const uint32_t difficulty;
 
-   bool isValid(const size_t index) const;
-   bool isValid() const;
+   bool isValidBlock(const size_t index) const;
+   bool isValidChain() const;
 
    inline size_t size() const { return chain_.size(); }
 

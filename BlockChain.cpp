@@ -27,12 +27,12 @@ const Block& BlockChain::operator[](const size_t index) const {
    return chain_[index];
 }
 
-bool BlockChain::isValid(const size_t index) const {
+bool BlockChain::isValidBlock(const size_t index) const {
    assert(index < chain_.size());
    return chain_[index].isValid(difficulty);
 }
 
-bool BlockChain::isValid() const {
+bool BlockChain::isValidChain() const {
    bool ret = true;
    for (size_t i = 0; i < chain_.size(); ++i) {
       ret &= chain_[i].isValid(difficulty);

@@ -6,7 +6,7 @@ void printValidity(const BlockChain & bc){
       std::cout << bc[i].display(bc.difficulty) << std::endl;
    }
    std::cout << "================================" << std::endl;
-   std::cout << "Checking chain validity : \n" << (bc.isValid()?"OK":"FAILED") << std::endl;
+   std::cout << "Checking chain validity : \n" << (bc.isValidChain()?"OK":"FAILED") << std::endl;
    std::cout << "================================" << std::endl;
 }
 
