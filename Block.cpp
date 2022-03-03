@@ -62,3 +62,29 @@ std::string Block::display(const uint32_t difficulty)const{
    ss << "\n************************";
    return ss.str();
 }
+
+void Block::dump(std::ostream & os)const{
+   writeIt(os, index_);
+   writeIt(os, nonce_);
+   writeIt(os, timeStamp_.count());
+   for(auto c:hash) writeIt(os, c); // 64 char
+   for(auto c:prevHash) writeIt(os, c); // 64 char
+   writeIt(os, data_.size());
+   for(auto c:data_) writeIt(os, c);
+}
+
+void Block::load(std::istream & is){
+   int64_t timeStamp = 0;
+   readIt(is, index_);
+   readIt(is, nonce_);
+   readIt(is, timeStamp);
+   timeStamp_ = std::chrono::microseconds(timeStamp);
+   hash.resize(64);
+   for(int i = 0; i < 64; ++i) readIt(is, hash[i]);
+   prevHash.resize(64);
+   for(int i = 0; i < 64; ++i) readIt(is, prevHash[i]);
+   size_t s = 0;
+   readIt(is, s);
+   data_.resize(s);
+   for(int i = 0; i < s; ++i) readIt(is, data_[i]);
+}

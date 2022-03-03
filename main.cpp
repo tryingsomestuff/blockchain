@@ -1,5 +1,6 @@
 #include "BlockChain.h"
 #include <iostream>
+#include <fstream>
 
 void printValidity(const BlockChain & bc){
    for (size_t i = 0 ; i < bc.size(); ++i){
@@ -18,6 +19,15 @@ int main() {
    }
 
    printValidity(bc);
+
+   {
+      std::ofstream ostr("save.bc", std::ios::out | std::ios::binary);
+      bc.dump(ostr);
+   }
+   {
+      std::ifstream istr("save.bc", std::ios::in | std::ios::binary);
+      bc.load(istr);
+   }
 
    std::cout << "Corrupting chain at block 5" << std::endl;
    bc[5].data() = "coucou"; // change data

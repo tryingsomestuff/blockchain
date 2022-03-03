@@ -2,7 +2,9 @@
 
 #include <cstdint>
 #include <chrono>
+#include <iostream>
 #include <string>
+
 /*
 Un bloc est simplement une structure contenant son numéro de bloc (index_), de la donnée (data_), 
 un numéro arbitraire appelé NONCE diminutif de Number used ONCE (nonce_), et le hash de toutes 
@@ -49,9 +51,22 @@ class Block {
 
    std::string computeHash() const;
 
+   void dump(std::ostream & os)const;
+   void load(std::istream & is);
+
   private:
    uint32_t    index_;
    uint32_t    nonce_;
    std::string data_;
    std::chrono::microseconds timeStamp_;
 };
+
+template<typename T>
+void writeIt(std::ostream & os, const T& t){
+   os.write(reinterpret_cast<const char*>(&t), sizeof(T));
+}
+
+template<typename T>
+void readIt(std::istream & is, T & t){
+   is.read(reinterpret_cast<char*>(&t), sizeof(T));
+}
