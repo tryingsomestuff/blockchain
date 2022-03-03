@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <chrono>
 #include <iostream>
 #include <sstream>
 
@@ -33,7 +34,7 @@ class Block {
    uint32_t    index_;
    uint32_t    nonce_;
    std::string data_;
-   time_t      timeStamp_;
+   std::chrono::microseconds timeStamp_;
 
    std::string computeHash_() const;
 };

@@ -1,9 +1,8 @@
 #include "Block.h"
-
 #include "sha256.h"
 
 Block::Block(const uint32_t index, const std::string &data): index_(index), data_(data), nonce_(0) {
-   timeStamp_ = time(nullptr);
+   timeStamp_ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
    hash       = computeHash_();
 }
 
@@ -27,6 +26,6 @@ bool Block::isValid(const uint32_t difficulty) const { return computeHash_() == 
 
 std::string Block::computeHash_() const {
    std::stringstream ss;
-   ss << index_ << prevHash << timeStamp_ << data_ << nonce_;
+   ss << index_ << prevHash << timeStamp_.count() << data_ << nonce_;
    return SHA256(ss.str());
 }
