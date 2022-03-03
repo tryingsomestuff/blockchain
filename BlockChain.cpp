@@ -1,6 +1,7 @@
 #include "BlockChain.h"
 
 #include <cassert>
+#include <iostream>
 
 BlockChain::BlockChain(const uint32_t difficulty): difficulty(difficulty > 0 ? difficulty : defaultDifficulty) {
    Block b0(0, "Zero!");

@@ -1,6 +1,9 @@
 #include "Block.h"
 #include "sha256.h"
 
+#include <iostream>
+#include <sstream>
+
 Block::Block(const uint32_t index, const std::string &data): index_(index), data_(data), nonce_(0) {
    timeStamp_ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
    hash       = computeHash_();
