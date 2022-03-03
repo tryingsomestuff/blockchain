@@ -36,7 +36,7 @@ bool BlockChain::isValid() const {
    bool ret = true;
    for (size_t i = 0; i < chain_.size(); ++i) {
       ret &= chain_[i].isValid(difficulty);
-      if (i > 0) { ret &= chain_[i].prevHash == chain_[i - 1].hash; }
+      if (i > 0) { ret &= chain_[i].prevHash == chain_[i - 1].computeHash(); }
       if (!ret) std::cout << "Invalid block in chain at position " << i << std::endl;
    }
    return ret;

@@ -17,10 +17,13 @@ int main() {
       bc.addBlock(Block(bc.size(), "This Block data " + std::to_string(i)));
    }
 
-   std::cout << "Corrupting chain at block 5" << std::endl;
    printValidity(bc);
 
-   bc[5].data() = "coucou";
+   std::cout << "Corrupting chain at block 5" << std::endl;
+   bc[5].data() = "coucou"; // change data
+   std::cout << bc[5].display(bc.difficulty) << std::endl;
+   bc[5].mine(bc.difficulty); // forced mining again
+   std::cout << bc[5].display(bc.difficulty) << std::endl;
 
    printValidity(bc);
 

@@ -28,13 +28,13 @@ class Block {
    inline std::string &      data() { return data_; }
    inline const std::string &data() const { return data_; }
 
-   std::string display(const uint32_t difficulty = 0)const;
+   std::string display(const uint32_t difficulty = 0) const;
+
+   std::string computeHash() const;
 
   private:
    uint32_t    index_;
    uint32_t    nonce_;
    std::string data_;
    std::chrono::microseconds timeStamp_;
-
-   std::string computeHash_() const;
 };
