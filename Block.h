@@ -28,6 +28,8 @@ class Block {
    inline std::string &      data() { return data_; }
    inline const std::string &data() const { return data_; }
 
+   std::string display(const uint32_t difficulty = 0)const;
+
   private:
    uint32_t    index_;
    uint32_t    nonce_;

@@ -3,14 +3,11 @@
 
 void printValidity(const BlockChain & bc){
    for (size_t i = 0 ; i < bc.size(); ++i){
-      std::cout << "block " << i 
-                << " hash " << bc[i].hash 
-                << " prevHash " << bc[i].prevHash 
-                << " signed? " << bc[i].isSigned(bc.difficulty) 
-                << " valid? " << bc.isValid(i) 
-                << std::endl;
+      std::cout << bc[i].display(bc.difficulty) << std::endl;
    }
-   std::cout << "Checking chain validity : \n" << bc.isValid() << std::endl;
+   std::cout << "================================" << std::endl;
+   std::cout << "Checking chain validity : \n" << (bc.isValid()?"OK":"FAILED") << std::endl;
+   std::cout << "================================" << std::endl;
 }
 
 int main() {
