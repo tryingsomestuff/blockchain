@@ -27,6 +27,8 @@ class BlockChain {
    bool isValid(const size_t index)const;
    bool isValid()const;
 
+   inline size_t size()const{return chain_.size();}
+
   private:
    static constexpr uint32_t defaultDifficulty = 4;
    std::vector<Block> chain_;
