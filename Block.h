@@ -22,12 +22,12 @@ class Block {
    // will fill the block hash
    void mine(const uint32_t difficulty);
 
-   bool isSigned(const uint32_t difficulty)const;
+   bool isSigned(const uint32_t difficulty) const;
 
-   bool isValid(const uint32_t difficulty)const;
+   bool isValid(const uint32_t difficulty) const;
 
-   inline std::string & data(){ return data_;}
-   inline const std::string & data()const{ return data_;}
+   inline std::string &      data() { return data_; }
+   inline const std::string &data() const { return data_; }
 
   private:
    uint32_t    index_;
