@@ -12,9 +12,16 @@ Block::Block(const uint32_t index, const std::string &data): index_(index), data
 void Block::mine(const uint32_t difficulty) {
    std::cout << "Mining block ... (difficulty " << difficulty << "), data : " << data_ << std::endl;
    const std::string str(difficulty, '0');
+   auto start = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
+   const decltype(nonce_) period = 50000;
    do {
       nonce_++;
       hash = computeHash();
+      if( nonce_%period == 0){
+         const auto now = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch());
+         std::cout << period*1000. / (now-start).count() << "kilo hash/s" << std::endl;
+         start = now;
+      }
    } while (hash.substr(0, difficulty) != str);
 
    std::cout << "Block mined ! " << hash << std::endl;
