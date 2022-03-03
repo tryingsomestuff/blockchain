@@ -16,13 +16,14 @@ void printValidity(const BlockChain & bc){
 int main() {
    auto bc = BlockChain();
 
-   bc.addBlock(Block(bc.size(), "Block 1 Data"));
-   bc.addBlock(Block(bc.size(), "Block 2 Data"));
-   bc.addBlock(Block(bc.size(), "Block 3 Data"));
+   for(size_t i = 0; i < 20; ++i){
+      bc.addBlock(Block(bc.size(), "This Block data " + std::to_string(i)));
+   }
 
+   std::cout << "Corrupting chain at block 5" << std::endl;
    printValidity(bc);
 
-   bc[2].data() = "coucou";
+   bc[5].data() = "coucou";
 
    printValidity(bc);
 
