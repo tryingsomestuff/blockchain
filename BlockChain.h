@@ -36,7 +36,7 @@ class BlockChain {
    inline size_t size() const { return chain_.size(); }
 
   private:
-   static constexpr uint32_t defaultDifficulty = 4;
+   static constexpr uint32_t defaultDifficulty_ = 4;
    std::vector<Block>        chain_;
 
    Block last_() const;

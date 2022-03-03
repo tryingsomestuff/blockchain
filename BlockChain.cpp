@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-BlockChain::BlockChain(const uint32_t difficulty): difficulty(difficulty > 0 ? difficulty : defaultDifficulty) {
+BlockChain::BlockChain(const uint32_t difficulty): difficulty(difficulty > 0 ? difficulty : defaultDifficulty_) {
    Block b0(0, "Zero!");
    b0.mine(BlockChain::difficulty);
    chain_.push_back(b0);
